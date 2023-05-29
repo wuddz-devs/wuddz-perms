@@ -1,0 +1,29 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "wuddz-perms"
+version = "1.0.0"
+description = "Generate All/Non-Repeat Character Permutations/Combinations Of String Or Mac Addresses With Prefix/Suffix Partial Address"
+readme = "README.md"
+authors = [
+  { name="Wuddz-Devs", email="wuddz_devs@protonmail.com" },
+]
+license = { file = "LICENSE" }
+requires-python = ">=3.7"
+keywords = ["string", "permutations", "combinations", "password", "generator"]
+classifiers = [
+		'License :: OSI Approved :: MIT License',
+		'Programming Language :: Python',
+		'Programming Language :: Python :: 3.7',
+		'Programming Language :: Python :: 3.8',
+		'Programming Language :: Python :: 3.9',
+		'Programming Language :: Python :: 3.10',
+]
+
+[project.scripts]
+wudz-perms = "wudz_perms:cli_main"
+
+[project.urls]
+"Homepage" = "https://github.com/wuddz-devs/wuddz-perms"
