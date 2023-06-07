@@ -15,7 +15,7 @@ $ pip install wuddz-perms
 ```
 Install locally by cloning or downloading and extracting the repo, then cd into 'dist' directory and execute:
 ```
-$ pip install wuddz_perms-1.0.0.tar.gz
+$ pip install wuddz_perms-1.0.1.tar.gz
 ```
 Then to run it, execute the following in the terminal:
 ```
@@ -23,6 +23,10 @@ $ wudz-perms
 ```
 
 ### Usage
+Generate All Lower, Upper & Punctuation 4 Character Length Combinations To Default "output.txt" File.
+```
+$ wudz-perms -all -l 4
+```
 Generate All Combinations Of String To Default "output.txt" File.
 ```
 $ wudz-perms -all -a wuddzdevs

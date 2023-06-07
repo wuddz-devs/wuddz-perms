@@ -1,4 +1,4 @@
-import argparse, re, sys
+import argparse, re, sys, string
 from os import system
 from itertools import product, permutations
 system('')
@@ -8,8 +8,8 @@ def all_uplow_perms(pw):
     for w in map(''.join, product(*zip(pw.upper(), pw.lower()))):
         yield str(w)
 
-def all_norep_perms(pw,pl):
-    for w in map(''.join, permutations(pw, int(pl))):
+def all_norep_perms(pw):
+    for w in map(''.join, permutations(pw, len(pw))):
         yield str(w)
 
 def all_perms(pw,pl):
@@ -36,15 +36,17 @@ def main(args):
     with open(args.output, 'a', encoding='utf-8') as fw:
         mc = {'pre':args.prefix,'suf':args.suffix}
         try:
-            if args.all or args.norep and args.length is None:args.length = len(args.string)
-            if args.all:md = all_perms(args.string,args.length)
+            if args.all:
+                if args.length is None:args.length = len(args.string)
+                if args.string is None:args.string = (string.ascii_letters+string.digits+string.punctuation).strip()
+                if args.string and args.length:md = all_perms(args.string,args.length)
             elif args.mac:
                 ms, ml, mi = mac_setup(args.prefix,args.suffix)
                 mc[str(mi)] = ms
                 md = all_mac_perms(mc['pre'],mc['suf'],ml)
                 mc = {'pre':'','suf':''}
             elif args.uplow:md = all_uplow_perms(args.string)
-            elif args.norep:md = all_norep_perms(args.string,args.length)
+            elif args.norep:md = all_norep_perms(args.string)
         except:pass
         if md:
             c = 0
@@ -58,7 +60,8 @@ def main(args):
         else:print("\033[1;31;40m[-] Error Occurred\033[0m")
 
 def cli_main():
-    parser = argparse.ArgumentParser(add_help = True, description ="Generate All/Non-Repeat Character Permutations/Combinations Of String Or Mac Addresses With Prefix/Suffix Partial Address.")
+    parser = argparse.ArgumentParser(add_help = True, 
+             description="Generate All/Non-Repeat Character Permutations/Combinations Of String Or Mac Addresses With Prefix/Suffix Partial Address.")
     parser.add_argument('-a', '--string', type=str, default=None, help='String To Generate All Permutations/Combinations.')
     parser.add_argument('-p', '--prefix', type=str, default='', help='String To Prefix Each Generated Permutation With.')
     parser.add_argument('-s', '--suffix', type=str, default='', help='String To Suffix Each Generated Permutation With.')

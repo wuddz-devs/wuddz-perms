@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "wuddz-perms"
-version = "1.0.0"
+version = "1.0.1"
 description = "Generate All/Non-Repeat Character Permutations/Combinations Of String Or Mac Addresses With Prefix/Suffix Partial Address"
 readme = "README.md"
 authors = [
